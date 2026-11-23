@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deadline Rush — a corrida da entrega</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <header class="hud">
+    <div><span class="logo">DEADLINE<b>RUSH</b></span><span class="sub">Engenharia de Software · a corrida da entrega</span></div>
+    <div class="clock">
+      <div class="day" id="dayLabel"><span>DIA 1 / 10</span><span>—</span></div>
+      <div class="bar"><div id="timeFill"></div><div id="dlMark"></div></div>
+    </div>
+    <div class="row">
+      <button class="iconbtn" id="pauseBtn" title="Pausar (Esc)">⏸</button>
+      <button class="iconbtn" id="soundBtn" title="Som">🔊</button>
+    </div>
+  </header>
+  <div class="stage-wrap">
+    <canvas id="stage"></canvas>
+    <div id="toasts"></div>
+  </div>
+  <div id="pads"></div>
+  <div id="feed"></div>
+</div>
+
+<!-- SETUP -->
+<div class="overlay" id="setup">
+  <div class="card wide">
+    <h1>DEADLINE<b>RUSH</b></h1>
+    <p class="tagline">Corram para entregar o projeto antes da deadline. Quem atrasar começa a receber <b style="color:var(--bad)">avisos de demissão</b> — e a vida na empresa fica mais difícil. Quem entregar antes escolhe: <b style="color:var(--good)">ajudar o colega</b> ou <b style="color:var(--warn)">pegar o bônus</b>.</p>
+    <canvas id="preview"></canvas>
+    <div class="grid2">
+      <div class="box">
+        <h3>COMO JOGAR</h3>
+        <ol class="howto">
+          <li><b>Aperte sua tecla sem parar</b> (ou toque no seu botão) para programar e andar pelas fases.</li>
+          <li>No fim de cada fase tem uma <b>revisão</b>: uma pergunta de Engenharia de Software. Errou? Passa com <b>débito técnico</b> — fica mais lento e com mais bugs.</li>
+          <li>Apareceu um 🐛? Continue apertando para <b>depurar</b>.</li>
+          <li>A linha laranja é o <b>ritmo ideal (burndown)</b>. Ficou atrás dela, está atrasado.</li>
+          <li>Na deadline, quem não entregou leva <b>aviso de demissão</b>: fica mais lento, mais bugs e o chefe aparece. <b>3 avisos = demitido.</b></li>
+          <li>Entregou? Escolha: <b>pair programming</b> com o mais atrasado ou <b>bônus</b> individual.</li>
+        </ol>
+      </div>
+      <div class="box">
+        <h3>TIME DA SPRINT</h3>
+        <div id="slots"></div>
+        <h3 style="margin-top:14px">PRAZO</h3>
+        <div class="diff" id="diff">
+          <button data-d="12">😌 Tranquilo · 12 dias</button>
+          <button data-d="10" class="on">😐 Normal · 10 dias</button>
+          <button data-d="8">🔥 Crunch · 8 dias</button>
+        </div>
+        <p class="concepts">Conceitos no jogo: ciclo de vida em fases · revisão/qualidade · débito técnico · burndown · scope creep · pair programming · Lei de Brooks · crunch.</p>
+      </div>
+    </div>
+    <button class="start" id="startBtn">▶ COMEÇAR SPRINT</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay hidden" id="modal"><div class="card" id="modalCard"></div></div>
+
+<!-- END -->
+<div class="overlay hidden" id="end"><div class="card wide" id="endCard"></div></div>
+
+<script src="js/game.js"></script>
+</body>
+</html>
